@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: red; /* Cambia el color del texto a rojo */
+            font-family: Arial, sans-serif;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">Cargando temporizador...</div>
+    <script>
+        function updateTimer() {
+            const endDate = new Date('2024-10-18T00:00:00'); // Fecha límite
+            const now = new Date();
+            const timeDifference = endDate - now;
+            
+            if (timeDifference <= 0) {
+                document.getElementById('timer').innerText = '¡Tiempo agotado!';
+                return;
+            }
+            
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+            
+            document.getElementById('timer').innerText = `${days} días ${hours} horas ${minutes} minutos ${seconds} segundos`;
+        }
+        
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Llamar inmediatamente para no esperar 1 segundo
+    </script>
+</body>
+</html>
